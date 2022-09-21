@@ -46,6 +46,11 @@ class Flickr {
                 )
                 })
                 })
+                strArr.map(function(item) {
+                    item = document.createElement('div');
+                    item.classList.add("flickr-boxes");
+                document.querySelector('.flickr-container').append(item);
+                })
                 
             })
         }

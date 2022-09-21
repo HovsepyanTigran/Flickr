@@ -11,21 +11,9 @@ window.onload = function(){
 
   
 }
-var key = '979b6782aab93b8ca2f3fce0f80b652d'
-let url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + key + '&tags=car&per_page=10&page=1&format=json&nojsoncallback=1'
-fetch(url).then(function(resp) {
-return resp.json()
-}).then(function(j) {
-  return j.photos.photo.map((pic) => {
-    console.log(pic);
-  let srcPath = 'hhtps://farm'+pic.farm+'.statickFlickr.com/'+pic.server+'/'+pic.id+'_'+pic.secret+'.jpg';
-  let img = document.createElement('img');
-            img.classList.add("img");
-            document.querySelector('.flickr-container').append(img);
-  img.src = srcPath
-  
-  
-  }
-  )
-  console.log(j)
-})
+
+// hhtps://farm66.statickFlickr.com/65535/52371952391_1063dc898d.jpg
+// https://farm66.staticFlickr.com/65535/52371952391_1063dc898d.jpg
+
+// https://farm66.staticflickr.com/65535/52371006392_273ff021a9.jpg
+// hhtps://farm66.staticflickr.com/65535/52371006392_273ff021a9.jpg

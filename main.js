@@ -3,9 +3,9 @@ class Flickr {
         this.container = options.container;
         //this.api_token = api_token;
         //this.images_limit = images_limit;
-        if(this.container) this.drawInput();
+        if(this.container) this.render();
     }
-    drawInput() {
+    render() {
         document.querySelector('.flickr-wrapper__button-start').onclick = function() {
             document.querySelector('.flickr-wrapper__button-start').style.visibility = 'hidden';
                 
@@ -24,11 +24,33 @@ class Flickr {
             var strArr;
             flickrSubmit.onclick = (function() {
                 strArr = flickrInput.value.split(/[,.\s]/).filter(function(item) {
-                return item.length != 0});
+                    return item.length != 0});
                 console.log(strArr);
+                let flickrImgs = document.createElement('div');
+                flickrImgs.classList.add("flickr-imgs");
+                document.querySelector('.flickr-container').append(flickrImgs);
+                var key = '979b6782aab93b8ca2f3fce0f80b652d'
+                
+                strArr.map(function(item) {
+                    let url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + key + '&tags=' + item + '&per_page=5&page=3&format=json&nojsoncallback=1'
+                fetch(url).then(function(resp) {
+                    return resp.json()
+                }).then(function(j) {
+                    return j.photos.photo.map((pic) => {
+                let srcPath = 'https://farm'+pic.farm+'.staticflickr.com/'+pic.server+'/'+pic.id+'_'+pic.secret+'.jpg';
+                let img = document.createElement('img');
+                img.classList.add("img");
+                flickrImgs.append(img);
+                img.src = srcPath
+                }
+                )
+                })
+                })
+                
             })
         }
     }
+                    
 }
 
 

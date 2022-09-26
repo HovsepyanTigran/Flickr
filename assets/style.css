@@ -49,17 +49,24 @@
     border: 1px solid black;
     /* max-width: 900px; */
 }
-.img {
+.flickr-imgs__img {
     width: 120px;
     height: 120px;
+    cursor: pointer;
 }
 .flickr-boxes {
     display: flex;
     flex-direction: row;
     flex-flow: wrap-reverse;
+    flex-wrap: wrap;
     justify-content: center;
+    margin-top: 10px;
+}
+.flickr-boxes__box {
     width: 100px;
     height: 100px;
-    background-color: red;
+    background-color: rgb(211, 147, 147);
     border-radius: 10px;
-}
+    margin: 10px;
+    text-align: center;
+ }

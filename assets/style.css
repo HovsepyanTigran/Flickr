@@ -61,6 +61,7 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 10px;
+    
 }
 .flickr-boxes__box {
     width: 100px;
@@ -69,4 +70,5 @@
     border-radius: 10px;
     margin: 10px;
     text-align: center;
+    margin-right: 20px;
  }

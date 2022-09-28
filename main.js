@@ -54,7 +54,12 @@ class Flickr {
           
           let photos = result.photos.photo;
 
+          for(let i = 0;i < photos.length;i++) {
+            photos[i].name = item;
+            
+          }
           
+console.log(photos);
         photos.map((pic) => {
             let srcPath =
               "https://farm" +
@@ -72,24 +77,21 @@ class Flickr {
             this.flickrImgsImg.alt = pic.name;
             flickrImgs.append(this.flickrImgsImg);
             this.flickrImgsImg.src = srcPath;
-            
+
+            // let x = document.querySelectorAll(".flickr-imgs__img")
+            // function shuffleArray(array) {
+            //   for (var i = array.length - 1; i > 0; i--) {
+            //     var j = Math.floor(Math.random() * (i + 1));
+            //     var temp = array[i];
+            //     array[i] = array[j];
+            //     array[j] = temp;
+            //   }
+            //   return array;
+            // }
+            // shuffleArray(x);            
            
         });
-        // for(let i = 0;i < photos.length;i++) {
-        //   photos[i].name = item;
-          
-        //   function shuffleArray(array) {
-        //     for (var i = array.length - 1; i > 0; i--) {
-        //       var j = Math.floor(Math.random() * (i + 1));
-        //       var temp = array[i];
-        //       array[i] = array[j];
-        //       array[j] = temp;
-        //     }
-        //     return array;
-        //   }
-        //   shuffleArray(photos);
-          
-        // }
+       
       let dragged = null;
       this.flickrBoxesBox = document.querySelectorAll(".flickr-boxes__box")
       this.flickrImgsImg = document.querySelectorAll(".flickr-imgs__img")

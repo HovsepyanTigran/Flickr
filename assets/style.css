@@ -4,7 +4,10 @@
     border: 0;
     box-sizing: border-box; 
 }
-
+body {
+    background-image: url(../bg.png);
+    background-repeat: no-repeat;
+}
 .flickr-wrapper {
     display: flex;
     flex-direction: column;

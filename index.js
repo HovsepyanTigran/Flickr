@@ -2,10 +2,12 @@ window.onload = function() {
 
 
 
-  document.querySelector('.flickr-wrapper__button-start').onclick = function() {
+  document.querySelector('.flickr-wrapper__button-start').onclick = () => {
     document.querySelector('.flickr-wrapper__button-start').style.visibility = 'hidden';
     new Flickr({
-      container: document.querySelector('.flickr-container')
+      container: document.querySelector('.flickr-container'),
+      api_token: "51a8f260e6144901015daceb57a59640",
+      images_limit: 5,
   })
     }    
    

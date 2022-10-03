@@ -6,7 +6,7 @@ window.onload = function() {
     document.querySelector('.flickr-wrapper__button-start').style.visibility = 'hidden';
     new Flickr({
       container: document.querySelector('.flickr-container'),
-      api_token: "51a8f260e6144901015daceb57a59640",
+      api_token: "2da929e91634dd5c53a05dbd51547a00",
       images_limit: 5,
   })
     }    

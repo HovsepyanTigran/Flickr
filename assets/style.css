@@ -75,9 +75,26 @@ body {
     text-align: center;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-right: 20px;
+    cursor: pointer;
  }
+.flickr-boxes__box:hover {
+    background-color: red;
+}
+
  .flickr-boxes-content {
     display: flex;
     justify-content: center;
     border: 1px solid black;
+ }
+ .flickr-boxes-content__img {
+    width: 100px;
+    height: 100px;
+ }
+ .flickr-restarter {
+    display: flex;
+    justify-content: center;
+    width: 80px;
+    height: 20px;
+    cursor: pointer;
+    background-color: rgb(60, 135, 206);
  }

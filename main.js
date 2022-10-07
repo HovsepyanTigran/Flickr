@@ -1,38 +1,42 @@
 class Flickr {
   constructor(options) {
+
     this.options = options;
+    if (!this.options) throw new Error("Options not defined")
+
     let defaultOptions = {
       container: document.querySelector(".flickr-container"),
       api_token: "60db52e60b6936d4298cbd26d5460558",
       images_limit: 5,
     };
     options = { ...defaultOptions, ...options };
+
     this.container = options.container;
     this.options.api_token = options.api_token;
     this.options.per_page = options.images_limit;
-    this.api_url =
-      "https://api.flickr.com/services/rest/?method=flickr.photos.search";
+    this.api_url = "https://api.flickr.com/services/rest/?method=flickr.photos.search";
     if (this.container) this.render(), this.refresh();
   }
-  render() {
-    var flickrSearcher = document.createElement("div");
+
+  render() 
+  {
+    let flickrSearcher = document.createElement("div");
     flickrSearcher.classList.add("flickr-searcher");
     this.container.append(flickrSearcher);
 
-    var flickrInput = document.createElement("input");
+    let flickrInput = document.createElement("input");
     flickrInput.classList.add("flickr-input");
     flickrSearcher.append(flickrInput);
 
-    var flickrSubmit = document.createElement("input");
+    let flickrSubmit = document.createElement("input");
     flickrSubmit.classList.add("flickr-submit");
     flickrSubmit.type = "submit";
     flickrSearcher.append(flickrSubmit);
-    var strArr;
-    var submitClick = true;
 
-    let showBoxContent = document.createElement("div");
-    showBoxContent.classList.add("flickr-boxes-content");
-    this.container.append(showBoxContent);
+    
+
+    let strArr;
+    let submitClick = true;
 
     flickrSubmit.onclick = async () => 
     {
@@ -46,7 +50,6 @@ class Flickr {
         let flickrImgs = document.createElement("div");
         flickrImgs.classList.add("flickr-imgs");
         this.container.append(flickrImgs);
-
         let urls = strArr.map((item) => 
         {
           return {
@@ -69,13 +72,17 @@ class Flickr {
 
           })
         );
+
         let concatedArray = [];
+
         results.forEach(function (item) 
         {
           concatedArray = concatedArray.concat(item);
         });
+
         results.length = 0;
         results = null;
+
         function shuffleArray(array) 
         {
           let currentIndex = array.length,
@@ -88,9 +95,12 @@ class Flickr {
           }
           return array;
         }
+
         shuffleArray(concatedArray);
 
+        let picArr = []
         this.photos = concatedArray;
+        
         concatedArray.map((pic) => 
         {
           let srcPath = `https://farm${pic.farm}.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}.jpg`;
@@ -100,16 +110,21 @@ class Flickr {
           this.flickrImg.id = pic.id;
           flickrImgs.append(this.flickrImg);
           this.flickrImg.src = srcPath;
+          picArr.push(this.flickrImg)
+
           this.flickrImg.addEventListener("dragstart", (event) => 
           {
             dragged = event.target;
           });
+          
         });
         
         let flickrBoxes = document.createElement("div");
         flickrBoxes.classList.add("flickr-boxes");
         this.container.append(flickrBoxes);
+
         let dragged = null;
+        
         let flickrBox = document.createElement("div");
 
         for (let i = 0; i < strArr.length; i++) 
@@ -117,11 +132,14 @@ class Flickr {
           flickrBox = document.createElement("div");
           flickrBox.classList.add("flickr-boxes__box");
           this.container.querySelector(".flickr-boxes").append(flickrBox);
+
           flickrBox.addEventListener("dragover", (event) => 
           {
             event.preventDefault();
           });
-          let dragArr = [];
+
+          var dragArr = [];
+
           flickrBox.addEventListener("drop", (event) => 
           {
             event.preventDefault();
@@ -134,10 +152,23 @@ class Flickr {
               );
               event.target.appendChild(dragged);
               dragged.style.visibility = "hidden";
+              picArr.pop()
             }
+            setTimeout(() => 
+            {
+              if(picArr.length === 0) 
+              {
+                alert("Complete")
+                this.restart()
+              }
+            },2)
+            
           });
+        }
+        let showBoxContent = document.createElement("div");
+        showBoxContent.classList.add("flickr-boxes-content");
+        this.container.append(showBoxContent);
           let img;
-
           flickrBox.onclick = () => 
           {
             showBoxContent.innerHTML = "";
@@ -152,19 +183,14 @@ class Flickr {
                 img.src = srcPath;
               });
             }
+           
           };
         }
-
         for (let i = 0; i < strArr.length; i++) 
         {
-          this.container.querySelectorAll(".flickr-boxes__box")[i].textContent =
-            strArr[i];
+          this.container.querySelectorAll(".flickr-boxes__box")[i].textContent = strArr[i];
         }
-      }
-      let showBoxContent = document.createElement("div");
-      showBoxContent.classList.add("flickr-boxes-content");
-      this.container.append(showBoxContent);
-    };
+    }
   }
 
   destroy() 
@@ -178,17 +204,27 @@ class Flickr {
       }
     }
   }
+
   restart() 
   {
     this.destroy();
     this.render();
+    let restartButton = document.createElement("button");
+    restartButton.classList.add("flickr-restarter");
+    restartButton.textContent = "Restart";
+    this.container.querySelector(".flickr-searcher").append(restartButton);
+    restartButton.onclick = () => 
+    {
+      this.restart();
+    };
   }
+
   refresh() 
   {
     let restartButton = document.createElement("button");
     restartButton.classList.add("flickr-restarter");
     restartButton.textContent = "Restart";
-    this.container.append(restartButton);
+    this.container.querySelector(".flickr-searcher").append(restartButton);
     restartButton.onclick = () => 
     {
       this.restart();

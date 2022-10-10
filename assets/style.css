@@ -6,7 +6,7 @@
 }
 
 body {
-    background-image: url(../bg.png);
+    background-image: url(../cover.jpg);
     background-repeat: no-repeat;
 }
 
@@ -30,8 +30,12 @@ body {
     cursor: pointer;
     margin-top: 40px;
     border: 1px black solid;
-    background-color: aqua;
+    background-color: rgb(219, 140, 88);
     font-family: 'Times New Roman', Times, serif;
+}
+
+.flickr-wrapper__button-start:hover {
+    background-color: rgb(221, 104, 50);
 }
 
 .flickr-searcher {
@@ -48,8 +52,14 @@ body {
     border: 1px black solid;
 }
 
+.flickr-input:focus {
+    background-color: rgb(243, 159, 104);
+}
+
 .flickr-submit {
+    width: 50px;
     height: 20px;
+    background-color: rgb(243, 131, 2);
     border: 1px black solid;
     cursor: pointer;
 }
@@ -69,6 +79,11 @@ body {
     cursor: pointer;
 }
 
+.flickr-imgs__img:hover {
+    border-radius: 10%;
+    border: 2px solid rebeccapurple;
+}
+
 .flickr-boxes {
     display: flex;
     flex-direction: row;
@@ -82,7 +97,7 @@ body {
 .flickr-boxes__box {
     width: 100px;
     height: 100px;
-    background-color: rgb(211, 147, 147);
+    background-color: rgb(233, 161, 54);
     border-radius: 10px;
     margin: 10px;
     text-align: center;
@@ -91,10 +106,6 @@ body {
     cursor: pointer;
  }
  
-.flickr-boxes__box:hover {
-    background-color: red;
-}
-
  .flickr-boxes-content {
     display: flex;
     justify-content: center;
@@ -111,6 +122,11 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     width: 80px;
     height: 20px;
+    border-radius: 50%;
     cursor: pointer;
-    background-color: rgb(60, 135, 206);
+    background-color: rgb(245, 157, 75);
+ }
+
+ .flickr-restarter:hover {
+    background-color: rgb(247, 123, 8);
  }

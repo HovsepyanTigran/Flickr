@@ -34,6 +34,8 @@ class Flickr {
     let flickrSubmit = document.createElement("input");
     flickrSubmit.classList.add("flickr-submit");
     flickrSubmit.type = "submit";
+    flickrSubmit.value = "Submit"
+
     flickrSearcher.append(flickrSubmit);
 
     
@@ -85,7 +87,6 @@ class Flickr {
         {
           concatedArray = concatedArray.concat(item);
         });
-
         results.length = 0;
         results = null;
 

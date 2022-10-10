@@ -207,7 +207,7 @@ class Flickr {
 
   destroy() 
   {
-    this.container.innerHTML = "";
+    this.options.container.innerHTML = "";
     for (let i in this) 
     {
       if (!["options", "container", "api_url"].includes(i)) 

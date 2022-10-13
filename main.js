@@ -49,7 +49,7 @@ class Flickr {
         stringArray = flickrInput.value.split(/[,.\s]/).filter(function (item) 
         {
           return item.length != 0;
-        });
+         });
         
         let flickrImgs = document.createElement("div");
         flickrImgs.classList.add("flickr-imgs");
@@ -59,7 +59,6 @@ class Flickr {
           stringArray.map(async (item) => 
           { 
             const resp = await fetch(`${this.api_url}&api_key=${this.options.api_token}&tags=${item}&per_page=${this.options.images_limit}&page=3&format=json&nojsoncallback=1`);
-            console.log(resp);
             const result = await resp.json();
             let photoArray = result?.photos?.photo;
             for (let i = 0; i < photoArray.length; i++) 
